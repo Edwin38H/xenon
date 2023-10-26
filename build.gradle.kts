@@ -1,9 +1,13 @@
+import org.gradle.configurationcache.extensions.capitalized
+import java.io.ByteArrayOutputStream
+
 plugins {
     id("java-library")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "dev.portero.xenon"
-version = "1.0.0-SNAPSHOT"
+version = "ALPHA"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -21,4 +25,37 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT")
+}
+
+val determinePatchVersion: () -> Int = {
+    val tagInfo = ByteArrayOutputStream()
+    exec {
+        commandLine("git", "describe", "--tags")
+        standardOutput = tagInfo
+    }
+    val output = tagInfo.toString()
+    val regex = """v(\d+)\.(\d+)\.(\d+)""".toRegex()
+    val matchResult = regex.find(output)
+    matchResult?.groups?.get(3)?.value?.toInt() ?: 0
+}
+
+val major = 0
+val minor = 0
+val patch = determinePatchVersion()
+val fullVersion = "$major.$minor.$patch-$version"
+
+tasks.register<Copy>("updatePluginYml") {
+    from(sourceSets.main.get().resources.srcDirs) {
+        include("**/plugin.yml")
+        expand("version" to fullVersion)
+    }
+    into(File(buildDir, "resources/main"))
+}
+
+tasks.shadowJar {
+    dependsOn("updatePluginYml")
+
+    archiveBaseName.set(project.name.capitalized())
+    archiveVersion.set(fullVersion)
+    archiveClassifier.set("")
 }
