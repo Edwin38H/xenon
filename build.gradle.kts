@@ -31,13 +31,23 @@ scmVersion {
         versionSeparator.set("-")
         versionIncrementer("incrementPatch")
     }
-    nextVersion{
+    nextVersion {
         suffix = "ALPHA"
     }
 }
 
 tasks.shadowJar {
+    dependsOn("updatePluginYml")
+
     archiveBaseName.set(project.name)
     archiveVersion.set(scmVersion.version)
     archiveClassifier.set("")
+}
+
+tasks.register<Copy>("updatePluginYml") {
+    from(sourceSets.main.get().resources.srcDirs) {
+        include("**/plugin.yml")
+        expand("version" to scmVersion.version)
+    }
+    into(File(buildDir, "resources/main"))
 }
