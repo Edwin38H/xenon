@@ -1,5 +1,5 @@
 name: Xenon
-version: 1.0.0-SNAPSHOT
+version: ${version}
 main: dev.portero.xenon.Xenon
 author: Portero
 description: A modern Minecraft plugin crafted for the latest version, blending learning with pure fun.
