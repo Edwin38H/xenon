@@ -4,6 +4,12 @@
   </a>
 </h1>
 <h1 align="center">XENON</h1>
+<p align="center">
+<a href="#introduction">Introduction</a> &nbsp;•&nbsp;
+<a href="#contributions">Contributions</a> &nbsp;•&nbsp;
+<a href="#code-of-conduct">License</a> &nbsp;•&nbsp;
+<a href="#issues">Help</a>
+</p>
 
 # Introduction
 
@@ -67,4 +73,8 @@ Xenon is licensed under the MIT License. This allows the software to be used fre
 
 ## Need Help?
 
-If you're stuck or have questions, feel free to reach out in our community chat or open an issue.
+If you're stuck or have questions, there are several ways to get in touch:
+
+1. **Community Chat**: Join our [Discord](https://discord.gg/bSabtXFT79) community and engage with other users and developers.
+2. **Direct Contact**: Feel free to add and message me on Discord using the tag `joshuatm`.
+3. **GitHub Issues**: If you encounter an issue or have a feature request, please open an [issue](https://github.com/joshuaportero/xenon/issues) in the repository.
