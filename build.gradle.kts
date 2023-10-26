@@ -27,12 +27,17 @@ dependencies {
 
 scmVersion {
     tag {
+        prefix.set("v")
+        versionSeparator.set("-")
         versionIncrementer("incrementPatch")
+    }
+    nextVersion{
+        suffix = "ALPHA"
     }
 }
 
 tasks.shadowJar {
     archiveBaseName.set(project.name)
     archiveVersion.set(scmVersion.version)
-    archiveClassifier.set("ALPHA")
+    archiveClassifier.set("")
 }
