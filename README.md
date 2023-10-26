@@ -7,8 +7,8 @@
 <p align="center">
 <a href="#introduction">Introduction</a> &nbsp;•&nbsp;
 <a href="#contributions">Contributions</a> &nbsp;•&nbsp;
-<a href="#code-of-conduct">License</a> &nbsp;•&nbsp;
-<a href="#issues">Help</a>
+<a href="#license">License</a> &nbsp;•&nbsp;
+<a href="#need-help?">Help</a>
 </p>
 
 # Introduction
