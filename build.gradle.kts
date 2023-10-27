@@ -30,8 +30,6 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
-
-    implementation("net.kyori:adventure-api:4.14.0")
 }
 
 val determinePatchVersion: () -> Int = {
