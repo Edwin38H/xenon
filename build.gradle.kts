@@ -39,9 +39,9 @@ val determinePatchVersion: () -> Int = {
         standardOutput = tagInfo
     }
     val output = tagInfo.toString()
-    val regex = """v(\d+)\.(\d+)\.(\d+)""".toRegex()
+    val regex = """v(\d+)\.(\d+)\.(\d+)(?:-(\d+)-g[a-f0-9]+)?""".toRegex()
     val matchResult = regex.find(output)
-    matchResult?.groups?.get(3)?.value?.toInt() ?: 0
+    matchResult?.groups?.get(4)?.value?.toInt() ?: 0
 }
 
 val major = 0
