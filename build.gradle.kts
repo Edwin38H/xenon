@@ -21,6 +21,12 @@ tasks.withType<JavaCompile> {
 repositories {
     mavenLocal()
     mavenCentral()
+
+    // Spigot API && Documentation
+    maven{
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        name = "SpigotMC"
+    }
 }
 
 dependencies {
@@ -59,6 +65,9 @@ tasks.register<Copy>("updatePluginYml") {
 
 tasks.shadowJar {
     dependsOn("updatePluginYml")
+
+    // Development environment configuration
+    destinationDirectory.set(File(buildDir, "../server/plugins"))
 
     archiveBaseName.set(project.name.capitalized())
     archiveVersion.set(fullVersion)
