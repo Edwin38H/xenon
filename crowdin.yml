@@ -1,0 +1,5 @@
+files:
+  - source: /src/main/resources/locale
+    ignore:
+      - /src/main/resources/locale/xenon_es.properties
+    translation: /src/main/resources/locale/xenon_%two_letters_code%.properties
