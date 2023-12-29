@@ -1,0 +1,5 @@
+POSTGRESQL:
+  HOST: 'xenon-1.c5sw28y0ylfd.us-east-1.rds.amazonaws.com'
+  DATABASE: 'xenon-1'
+  USER: 'xenon'
+  PASSWORD: 'h2x3BNEvyVw1hc9v2ToG'

@@ -3,4 +3,7 @@ version: ${version}
 main: dev.portero.xenon.Xenon
 author: Portero
 description: A modern Minecraft plugin crafted for the latest version, blending learning with pure fun.
-api-version: 1.20
+api-version: 1.13
+commands:
+  xenon:
+    description: Xenon's main command. Settings, help, and more.

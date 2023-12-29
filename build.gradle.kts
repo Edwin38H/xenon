@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "dev.portero.xenon"
-version = "ALPHA"
+version = "DEV"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -21,10 +21,22 @@ tasks.withType<JavaCompile> {
 repositories {
     mavenLocal()
     mavenCentral()
+
+    maven {
+        name = "PaperMC"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
+
+    compileOnly("org.jetbrains:annotations:24.0.0")
+
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+
+    implementation("org.postgresql:postgresql:42.7.1")
 }
 
 val determinePatchVersion: () -> Int = {
@@ -34,9 +46,9 @@ val determinePatchVersion: () -> Int = {
         standardOutput = tagInfo
     }
     val output = tagInfo.toString()
-    val regex = """v(\d+)\.(\d+)\.(\d+)""".toRegex()
+    val regex = """v(\d+)\.(\d+)\.(\d+)(?:-(\d+)-g[a-f0-9]+)?""".toRegex()
     val matchResult = regex.find(output)
-    matchResult?.groups?.get(3)?.value?.toInt() ?: 0
+    matchResult?.groups?.get(4)?.value?.toInt() ?: 0
 }
 
 val major = 0
@@ -53,9 +65,18 @@ tasks.register<Copy>("updatePluginYml") {
 }
 
 tasks.shadowJar {
+
+
     dependsOn("updatePluginYml")
 
     archiveBaseName.set(project.name.capitalized())
-    archiveVersion.set(fullVersion)
+
+    if (version == "DEV") {
+        val devVersion = "1.0.0-DEV"
+        archiveVersion.set(devVersion)
+    } else {
+        archiveVersion.set(fullVersion)
+    }
+
     archiveClassifier.set("")
 }
