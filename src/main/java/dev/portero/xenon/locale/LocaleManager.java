@@ -46,16 +46,26 @@ public class LocaleManager {
         this.registry = TranslationRegistry.create(Key.key("xenon", "main"));
         this.registry.defaultLocale(DEFAULT_LOCALE);
 
-        loadFromResourceBundle();
+        loadCustomLocales();
+        loadDefaultLocale();
 
         GlobalTranslator.translator().addSource(this.registry);
     }
 
-    private void loadFromResourceBundle() {
-        ResourceBundle en_bundle = ResourceBundle.getBundle("locale.xenon", DEFAULT_LOCALE, UTF8ResourceBundleControl.get());
+    private void loadDefaultLocale() {
+        loadFromResourceBundle(DEFAULT_LOCALE);
+    }
 
+    private void loadCustomLocales() {
+        Locale spanish = new Locale("es");
+
+        loadFromResourceBundle(spanish);
+    }
+
+    private void loadFromResourceBundle(Locale spanish) {
+        ResourceBundle es = ResourceBundle.getBundle("locale.xenon", spanish, UTF8ResourceBundleControl.get());
         try {
-            this.registry.registerAll(DEFAULT_LOCALE, en_bundle, false);
+            this.registry.registerAll(spanish, es, false);
         } catch (IllegalArgumentException e) {
             if (!isAdventureDuplicatesException(e)) {
                 this.plugin.getLogger().log(Level.WARNING, "Error loading default locale file", e);
