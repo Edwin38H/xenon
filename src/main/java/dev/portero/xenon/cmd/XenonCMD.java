@@ -11,11 +11,11 @@ public class XenonCMD implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Only players can execute this command!");
+            Message.COMMANDS_ONLY_PLAYERS.send(sender);
             return false;
         }
 
-        Message.COMMAND_NO_PERMISSION.send(player);
+        Message.COMMANDS_NO_PERMISSION.send(player);
         return false;
     }
 }

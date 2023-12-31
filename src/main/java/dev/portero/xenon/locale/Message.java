@@ -8,7 +8,12 @@ import static net.kyori.adventure.text.format.NamedTextColor.RED;
 
 public interface Message {
 
-    Args0 COMMAND_NO_PERMISSION = () -> translatable()
+    Args0 COMMANDS_ONLY_PLAYERS = () -> translatable()
+            .key("commands.only-players")
+            .color(RED)
+            .build();
+
+    Args0 COMMANDS_NO_PERMISSION = () -> translatable()
             .key("commands.no-permission")
             .color(RED)
             .build();
@@ -18,6 +23,22 @@ public interface Message {
 
         default void send(CommandSender sender) {
             sender.sendMessage(build());
+        }
+    }
+
+    interface Args1<A0> {
+        Component build(A0 arg0);
+
+        default void send(CommandSender sender, A0 arg0) {
+            sender.sendMessage(build(arg0));
+        }
+    }
+
+    interface Args2<A0, A1> {
+        Component build(A0 arg0, A1 arg1);
+
+        default void send(CommandSender sender, A0 arg0, A1 arg1) {
+            sender.sendMessage(build(arg0, arg1));
         }
     }
 }
