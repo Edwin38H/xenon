@@ -7,7 +7,6 @@ import static net.kyori.adventure.text.Component.translatable;
 import static net.kyori.adventure.text.format.NamedTextColor.RED;
 
 public interface Message {
-
     Args0 COMMANDS_ONLY_PLAYERS = () -> translatable()
             .key("commands.only-players")
             .color(RED)
