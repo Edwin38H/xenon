@@ -8,6 +8,7 @@ import java.util.Objects;
 public class ConfigKeys {
 
     private static final Xenon plugin = Xenon.getInstance();
+    private static final ConfigManager configManager = plugin.getConfigManager();
 
     public static final DataCredentials DATABASE_VALUES = new DataCredentials(
             plugin.getConfig().getString("data.address"),
@@ -23,5 +24,6 @@ public class ConfigKeys {
     );
 
     public static final String SQL_TABLE_PREFIX = plugin.getConfig().getString("data.table-prefix");
+
 }
 

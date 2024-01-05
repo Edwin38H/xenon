@@ -2,6 +2,7 @@ package dev.portero.xenon;
 
 import dev.portero.xenon.cmd.XenonCMD;
 import dev.portero.xenon.config.ConfigKeys;
+import dev.portero.xenon.config.ConfigManager;
 import dev.portero.xenon.data.Data;
 import dev.portero.xenon.listener.PlayerDataListener;
 import dev.portero.xenon.locale.LocaleManager;
@@ -21,6 +22,8 @@ public class Xenon extends JavaPlugin {
     LocaleManager localeManager;
     @Getter
     private Data data;
+    @Getter
+    private ConfigManager configManager;
 
     private Instant startTime;
 
@@ -64,8 +67,11 @@ public class Xenon extends JavaPlugin {
     }
 
     private void loadStorage() {
+        this.configManager = new ConfigManager(this);
         this.loadConfig();
         this.loadDatabase();
+
+        this.getLogger().log(Level.WARNING, ConfigKeys.EXAMPLE);
     }
 
     private void registerCommands() {
