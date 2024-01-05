@@ -1,5 +1,15 @@
-POSTGRESQL:
-  HOST: 'xenon-1.c5sw28y0ylfd.us-east-1.rds.amazonaws.com'
-  DATABASE: 'xenon-1'
-  USER: 'xenon'
-  PASSWORD: 'h2x3BNEvyVw1hc9v2ToG'
+data:
+  address: localhost
+  database: minecraft
+  username: root
+  password: ''
+  pool-settings:
+    maximum-pool-size: 10
+    minimum-idle: 10
+    maximum-lifetime: 1800000 # 30 minutes
+    keepalive-time: 0
+    connection-timeout: 5000 # 5 seconds
+  properties:
+    useSSL: true
+    verifyServerCertificate: true
+  table-prefix: 'xenon_'
