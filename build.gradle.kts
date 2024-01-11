@@ -38,6 +38,7 @@ dependencies {
 
     implementation("org.postgresql:postgresql:42.7.1")
     implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
 }
 
 val determinePatchVersion: () -> Int = {
